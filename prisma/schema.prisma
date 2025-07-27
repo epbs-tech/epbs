@@ -1,0 +1,286 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // uncomment next line if you use Prisma <5.10
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "./node_modules/@prisma/client"
+}
+
+model Formation {
+  id                  String     @id @default(cuid())
+  title               String
+  description         String
+  detailedDescription String?
+  duration            String
+  category            String
+  image               String
+  isActive            Boolean    @default(true)
+  objectives          String[]
+  prerequisites       String[]
+  syllabus            Syllabus[]
+  sessions            Session[]
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+  level               String?
+  targetAudience      String?
+  teachingMethod      String?
+}
+
+model Syllabus {
+  id          String    @id @default(cuid())
+  title       String
+  content     String[]
+  formation   Formation @relation(fields: [formationId], references: [id])
+  formationId String
+}
+
+model Session {
+  id                  String         @id @default(cuid())
+  startDate           DateTime
+  endDate             DateTime
+  location            String
+  priceMAD            Float
+  priceEUR            Float
+  maxParticipants     Int
+  currentParticipants Int            @default(0)
+  isOpen              Boolean        @default(true)
+  formation           Formation      @relation(fields: [formationId], references: [id])
+  formationId         String
+  registrations       Registration[]
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+}
+
+model Registration {
+  id                      String    @id @default(cuid())
+  firstName               String
+  lastName                String
+  email                   String
+  phone                   String
+  company                 String?
+  session                 Session   @relation(fields: [sessionId], references: [id])
+  sessionId               String
+  user                    User      @relation(fields: [userId], references: [id])
+  userId                  String
+  status                  String    @default("pending") // pending, confirmed, cancelled
+  paymentMethod           String // creditCard, bankTransfer
+  paymentStatus           String    @default("pending") // pending, completed
+  paidAt                  DateTime?
+  stripeCustomerId        String?
+  stripePaymentIntentId   String?   @unique
+  stripeCheckoutSessionId String?   @unique
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  hasAgreedToTerms        Boolean   @default(false)
+  quoteNumber             String?   @unique
+  currency                String    @default("MAD") // MAD, EUR
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+model User {
+  id                    String                 @id @default(cuid())
+  name                  String?
+  email                 String?                @unique
+  emailVerified         DateTime?              @map("email_verified")
+  image                 String?
+  password              String?
+  role                  UserRole               @default(USER)
+  accounts              Account[]
+  registrations         Registration[] // Ajout de la relation
+  isTwoFactorEnabled    Boolean                @default(false)
+  twoFactorConfirmation TwoFactorConfirmation?
+
+  @@map("users")
+}
+
+model VerificationToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+  @@map("verification_tokens")
+}
+
+model PasswordResetToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+  @@map("password_reset_tokens")
+}
+
+model TwoFactorToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+  @@map("two_factor_tokens")
+}
+
+model TwoFactorConfirmation {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+  @@map("two_factor_confirmations")
+}
+
+model Podcast {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Informations de base
+  title       String
+  description String  @db.Text
+  imageUrl    String?
+
+  // Métadonnées
+  author   String?
+  language String  @default("fr")
+  explicit Boolean @default(false)
+  plays    Int     @default(0)
+
+  // URLs et liens
+  feedUrl    String? @unique
+  websiteUrl String?
+
+  // Statistiques
+  totalEpisodes Int @default(0)
+  subscribers   Int @default(0)
+
+  // Relations
+  episodes Episode[]
+
+  // Si vous avez un modèle User, vous pouvez ajouter une relation avec l'auteur
+  // userId     String
+  // user       User     @relation(fields: [userId], references: [id])
+
+  //@@index([userId])
+}
+
+model Episode {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Informations de base
+  title       String
+  description String  @db.Text
+  audioUrl    String
+  imageUrl    String?
+  duration    Int
+
+  // Métadonnées
+  episodeNumber Int?
+  seasonNumber  Int?
+  publishedAt   DateTime @default(now())
+
+  // Statistiques
+  plays Int @default(0)
+  likes Int @default(0)
+
+  // Relations
+  podcastId String
+  podcast   Podcast @relation(fields: [podcastId], references: [id], onDelete: Cascade)
+
+  @@index([podcastId])
+}
+
+// Les blogs
+
+model Blog {
+  id          String   @id @default(cuid())
+  title       String
+  author      String
+  date        DateTime @default(now())
+  description String?
+  imageUrl    String?
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  sections Section[]
+
+  @@map("blogs")
+}
+
+model Section {
+  id     String @id @default(cuid())
+  title  String
+  order  Int
+  blogId String
+
+  blog     Blog      @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  contents Content[]
+
+  @@map("sections")
+}
+
+model Content {
+  id        String      @id @default(cuid())
+  type      ContentType
+  order     Int
+  sectionId String
+
+  // Champs pour différents types de contenu
+  text      String? // Pour le texte simple
+  listItems Json? // Pour les listes (array de strings)
+  listType  ListType? // NUMBERED ou BULLET
+  tableData Json? // Pour les tableaux (structure JSON)
+
+  section Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@map("contents")
+}
+
+enum ContentType {
+  TEXT
+  NUMBERED_LIST
+  BULLET_LIST
+  TABLE
+}
+
+enum ListType {
+  NUMBERED
+  BULLET
+}
