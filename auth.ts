@@ -93,5 +93,4 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         maxAge: 60 * 60, // 1 heure
     },
   ...authConfig,
-  //providers: [GitHub, Google],
 })

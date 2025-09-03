@@ -76,7 +76,7 @@ export const LoginForm = () => {
             headerLabel="Welcome back"
             backButtonLabel="Don't have an account?"
             backButtonHref="/auth/register"
-            showSocial
+            // showSocial
         >
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}
