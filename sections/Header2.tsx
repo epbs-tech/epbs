@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import Logo from '@/public/epbs_logo.svg';
 import Image from 'next/image';
 import MenuIcon from '@/assets/menu.svg';
 import { X, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
@@ -95,7 +94,7 @@ const Header = () => {
             <div className="flex items-center justify-between py-5">
               <Link href="/" className="relative z-20">
                 <Image
-                  src={Logo}
+                  src="/epbs_logo.svg"
                   alt="EPBS Logo"
                   height={150}
                   width={150}
