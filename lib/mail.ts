@@ -67,7 +67,7 @@ const createEmailTemplate = (content: string): string => {
     <body>
       <div class="container">
         <div class="logo">
-          <img src="${domain}/LOGO_EPBS.png" alt="EPBS Consulting" height="50" />
+          <img src="${domain}/epbs_logo.svg" alt="EPBS Consulting" height="50" />
         </div>
         
         <div class="content">
@@ -76,7 +76,7 @@ const createEmailTemplate = (content: string): string => {
         
         <div class="signature">
           <div class="signature-logo">
-            <img src="${domain}/LOGO_EPBS.png" alt="EPBS Consulting" height="40" />
+            <img src="${domain}/epbs_logo.svg" alt="EPBS Consulting" height="40" />
           </div>
           <p>
             <strong>EPBS Consulting</strong><br>

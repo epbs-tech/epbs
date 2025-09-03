@@ -75,7 +75,7 @@ export function PaymentMethods({
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     const margin = 20;
-    doc.addImage("/LOGO_EPBS.png", 'PNG', margin, margin, 50, 15);
+    doc.addImage("/epbs_logo.svg", 'PNG', margin, margin, 50, 15);
     doc.setFontSize(20);
     doc.setFont("helvetica", "bold");
     doc.text("DEVIS", pageWidth / 2, margin + 30, { align: "center" });

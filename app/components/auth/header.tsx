@@ -25,7 +25,7 @@ export const Header = ({
             )}>
                 <div >
                     <Image
-                        src="/LOGO_EPBS.png"
+                        src="/epbs_logo.svg"
                         alt="EPBS Consulting"
                         width={300}
                         height={50}

@@ -86,7 +86,7 @@ export const generatePaymentReceipt = async (
 
   try {
     // Récupération du chemin du logo
-    const logoPath = path.join(process.cwd(), 'public', 'LOGO_EPBS.png');
+    const logoPath = path.join(process.cwd(), 'public', 'epbs_logo.svg');
 
     // Vérification si le fichier existe
     if (fs.existsSync(logoPath)) {

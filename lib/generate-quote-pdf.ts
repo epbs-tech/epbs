@@ -30,7 +30,7 @@ export const generateQuotePDF = async ({
   price,
   currency,
   vatRate = 0.20,
-  logoPath = "/LOGO_EPBS.png",
+  logoPath = "/epbs_logo.svg",
   bankDetails = {
     accountHolder: "EPBSEA SARL",
     bank: "CFG Bank",
@@ -60,7 +60,7 @@ export const generateQuotePDF = async ({
       const logoHeight = 15;
       doc.addImage(logoBase64, 'PNG', margin, margin, logoWidth, logoHeight);
     }
-  const logoPath2 = path.join(process.cwd(), 'public', 'LOGO_EPBS.png');
+  const logoPath2 = path.join(process.cwd(), 'public', 'epbs_logo.svg');
 
     // Vérification si le fichier existe
     if (fs.existsSync(logoPath2)) {

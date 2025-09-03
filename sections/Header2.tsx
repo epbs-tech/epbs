@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import Logo from '@/public/LOGO_EPBS.png';
+import Logo from '@/public/epbs_logo.svg';
 import Image from 'next/image';
 import MenuIcon from '@/assets/menu.svg';
 import { X, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
