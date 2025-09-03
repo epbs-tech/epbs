@@ -79,7 +79,7 @@ export const ResetForm = () => {
                     <FormSuccess message={success} />
                     <FormError message={error} />
                     <Button type="submit" className="w-full cursor-pointer btn-primary" disabled={isPending}>
-                        Send reset email
+                        {isPending ? "Sending reset link..." : "Send Reset Link"}
                     </Button>
                 </form>
             </Form>

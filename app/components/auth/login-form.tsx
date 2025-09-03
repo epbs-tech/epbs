@@ -158,7 +158,7 @@ export const LoginForm = () => {
                     <FormSuccess message={success} />
                     <FormError message={error || urlError} />
                     <Button type="submit" className="w-full cursor-pointer btn-primary" disabled={isPending}>
-                        {showTwoFactor ? "Confirm" : "Login"}
+                        {showTwoFactor ? isPending ? "Verifying..." : "Verify Code" : isPending ? "Logging in..." : "Login"}
                     </Button>
                 </form>
             </Form>

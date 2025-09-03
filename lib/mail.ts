@@ -1,11 +1,9 @@
-import axios from 'axios';
 import { Registration, Session, Formation, User } from '@prisma/client';
 import { generatePaymentReceipt } from './generate-receipt';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { generateQuotePDF } from '@/lib/generate-quote-pdf';
 
-const API_KEY = process.env.BREVO_API_KEY as string;
 const domain = process.env.NEXT_PUBLIC_APP_URL;
 
 // Type étendu pour inclure les relations
@@ -104,6 +102,24 @@ const createEmailTemplate = (content: string): string => {
 };
 
 // Fonction de base pour envoyer un email
+import nodemailer from 'nodemailer';
+
+const SMTP_HOST = process.env.SMTP_HOST;
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
+const SMTP_USER = process.env.SMTP_USER;
+const SMTP_PASS = process.env.SMTP_PASS;
+
+const transporter = nodemailer.createTransport({
+  host: SMTP_HOST,
+  port: SMTP_PORT,
+  secure: SMTP_PORT === 465, // true for 465, false for other ports
+  auth: {
+    user: SMTP_USER,
+    pass: SMTP_PASS,
+  },
+  tls: { rejectUnauthorized: false, }
+});
+
 const sendEmail = async ({
   to,
   subject,
@@ -113,34 +129,14 @@ const sendEmail = async ({
   to: string;
   subject: string;
   htmlContent: string;
-  attachments?: Array<{
-    content: string;
-    name: string;
-  }>;
+  attachments?: Array<{ content: string; name: string; contentType?: string }>;
 }) => {
-  const payload: any = {
-    sender: {
-      name: 'EPBS Consulting',
-      email: 'koteseydou8@gmail.com',
-    },
-    to: [{ email: to }],
+  await transporter.sendMail({
+    from: `EPBS Consulting <${SMTP_USER}>`,
+    to,
     subject,
-    htmlContent: createEmailTemplate(htmlContent),
-  };
-
-  if (attachments.length > 0) {
-    payload.attachment = attachments.map(att => ({
-      content: att.content,
-      name: att.name,
-      contentType: 'application/pdf',
-    }));
-  }
-
-  return await axios.post('https://api.brevo.com/v3/smtp/email', payload, {
-    headers: {
-      'api-key': API_KEY,
-      'Content-Type': 'application/json',
-    },
+    html: createEmailTemplate(htmlContent),
+    attachments,
   });
 };
 

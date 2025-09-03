@@ -64,7 +64,7 @@ export default function Hero() {
       window.URL.revokeObjectURL(url)
 
       // Optionnel : notification de succès
-      console.log('Téléchargement réussi')
+      // console.log('Téléchargement réussi')
 
     } catch (error) {
       console.error('Erreur:', error)
@@ -120,7 +120,7 @@ export default function Hero() {
     transition: {
       duration: 2,
       repeat: Infinity,
-      ease: "easeInOut"
+      ease: "easeInOut" as const
     }
   };
 

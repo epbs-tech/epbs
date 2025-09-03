@@ -34,9 +34,7 @@ export default auth((req) => {
     const isLoggedIn = !!req.auth;
 
     // Routes API spécifiques (early returns pour performance)
-    if (nextUrl.pathname === '/api/webhooks/stripe') {
-        return;
-    }
+        // Stripe webhook logic removed
     if (nextUrl.pathname === "/api/blogs" || nextUrl.pathname.startsWith("/api/blogs/")) {
         return;
     }

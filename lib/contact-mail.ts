@@ -1,6 +1,20 @@
 import axios from 'axios';
 
-const API_KEY = process.env.BREVO_API_KEY as string;
+const SMTP_HOST = process.env.SMTP_HOST;
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
+const SMTP_USER = process.env.SMTP_USER;
+const SMTP_PASS = process.env.SMTP_PASS;
+import nodemailer from 'nodemailer';
+const transporter = nodemailer.createTransport({
+  host: SMTP_HOST,
+  port: SMTP_PORT,
+  secure: SMTP_PORT === 465,
+  auth: {
+    user: SMTP_USER,
+    pass: SMTP_PASS,
+  },
+  tls: { rejectUnauthorized: false, }
+});
 const domain = process.env.NEXT_PUBLIC_APP_URL;
 
 // Interface pour les données du formulaire de contact
@@ -110,12 +124,16 @@ const sendEmail = async ({
     htmlContent: createEmailTemplate(htmlContent),
   };
 
-  return await axios.post('https://api.brevo.com/v3/smtp/email', payload, {
-    headers: {
-      'api-key': API_KEY,
-      'Content-Type': 'application/json',
-    },
-  });
+  const mailOptions: any = {
+    from: `EPBS Consulting <${SMTP_USER}>`,
+    to: payload.to[0].email,
+    subject: payload.subject,
+    html: payload.htmlContent,
+  };
+  if ((payload as any).attachment) {
+    mailOptions.attachments = (payload as any).attachment;
+  }
+  await transporter.sendMail(mailOptions);
 };
 
 /**

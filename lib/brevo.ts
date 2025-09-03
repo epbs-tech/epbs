@@ -1,7 +1,20 @@
-import axios from 'axios';
-
-const API_KEY = process.env.BREVO_API_KEY as string;
+import nodemailer from 'nodemailer';
 const domain = process.env.NEXT_PUBLIC_APP_URL;
+const SMTP_HOST = process.env.SMTP_HOST;
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
+const SMTP_USER = process.env.SMTP_USER;
+const SMTP_PASS = process.env.SMTP_PASS;
+
+const transporter = nodemailer.createTransport({
+  host: SMTP_HOST,
+  port: SMTP_PORT,
+  secure: SMTP_PORT === 465,
+  auth: {
+    user: SMTP_USER,
+    pass: SMTP_PASS,
+  },
+  tls: { rejectUnauthorized: false, }
+});
 
 // Template HTML avec signature pour tous les emails EPBS Consulting
 const createEmailTemplate = (content: string): string => {
@@ -78,24 +91,12 @@ const sendEmail = async ({
   subject: string;
   htmlContent: string;
 }) => {
-  return await axios.post(
-    'https://api.brevo.com/v3/smtp/email',
-    {
-      sender: {
-        name: 'EPBS Consulting',
-        email: 'koteseydou8@gmail.com', // remplacer par votre email vérifié chez Brevo
-      },
-      to: [{ email: to }],
-      subject,
-      htmlContent: createEmailTemplate(htmlContent),
-    },
-    {
-      headers: {
-        'api-key': API_KEY,
-        'Content-Type': 'application/json',
-      },
-    }
-  );
+  await transporter.sendMail({
+    from: `EPBS Consulting <${SMTP_USER}>`,
+    to,
+    subject,
+    html: createEmailTemplate(htmlContent),
+  });
 };
 
 export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
