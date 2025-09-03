@@ -103,8 +103,8 @@ export default function CookiesPage() {
           disponibles dans notre Politique de confidentialité ou directement à :
         </p>
         <address className="not-italic">
-          <a href="mailto:contact@epbs-consulting.com" className="text-[var(--color-primary)]">
-            contact@epbs-consulting.com
+          <a href="mailto:contact@epbsconsulting.com" className="text-[var(--color-primary)]">
+            contact@epbsconsulting.com
           </a>
           <br />
           EPBS Consulting – Maroc<br />

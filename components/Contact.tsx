@@ -287,7 +287,7 @@ const Contact = () => {
                     className="text-base font-medium leading-relaxed text-white md:text-[var(--color-primary-dark)]/50"
                     whileHover={{ x: 5 }}
                   >
-                    contact@epbs-consulting.com
+                    contact@epbsconsulting.com
                   </motion.p>
                   <motion.p
                     className="mt-1 text-base font-medium leading-relaxed text-white md:text-[var(--color-primary-dark)]/50"

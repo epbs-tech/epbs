@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const SMTP_HOST = process.env.SMTP_HOST;
+const SMTP_HOST = process.env.SMTP_HOST!;
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
-const SMTP_USER = process.env.SMTP_USER;
-const SMTP_PASS = process.env.SMTP_PASS;
+const SMTP_USER = process.env.SMTP_USER!;
+const SMTP_PASS = process.env.SMTP_PASS!;
 import nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport({
   host: SMTP_HOST,
@@ -117,7 +117,7 @@ const sendEmail = async ({
   const payload = {
     sender: {
       name: 'EPBS Consulting - Site Web',
-      email: 'koteseydou8@gmail.com',
+      email: SMTP_USER,
     },
     to: [{ email: to }],
     subject,
@@ -154,7 +154,7 @@ export const sendContactNotificationEmail = async (contactData: ContactFormData)
   });
 
   await sendEmail({
-    to: 'koteseydou8@gmail.com', //contact@epbsconsulting.com', // Email de destination pour l'équipe
+    to: SMTP_USER, //contact@epbsconsulting.com', // Email de destination pour l'équipe
     subject: `🔔 Nouveau message de contact - ${fullName}`,
     htmlContent: `
       <div style="text-align: center; margin-bottom: 20px;">

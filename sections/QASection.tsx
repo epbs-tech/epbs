@@ -27,7 +27,7 @@ const faqs = [
   {
     question: "Où se trouvent vos bureaux et comment prendre rendez-vous ?",
     answer:
-      "Notre siège est situé à Rabat, Maroc. Vous pouvez prendre rendez-vous :\n• En nous écrivant à l’adresse email suivante : contact@epbs-consulting.com ;\n• En réservant un créneau via notre lien Calendly pour un échange personnalisé : https://calendly.com/epbsconsulting-sdg-esg-csr/30min .",
+      "Notre siège est situé à Rabat, Maroc. Vous pouvez prendre rendez-vous :\n• En nous écrivant à l’adresse email suivante : contact@epbsconsulting.com ;\n• En réservant un créneau via notre lien Calendly pour un échange personnalisé : https://calendly.com/epbsconsulting-sdg-esg-csr/30min .",
   },
   {
     question: "Comment EPBS Consulting aide-t-il les entreprises françaises et marocaines à se conformer aux normes européennes ?",
@@ -57,7 +57,7 @@ const faqs = [
   {
     question: "Comment puis-je prendre contact avec EPBS Consulting ?",
     answer:
-      "Vous pouvez nous contacter via :\n• Notre formulaire de contact sur le site internet ;\n• Par téléphone (numéro à spécifier) ;\n• Par email à contact@epbs-consulting.com ;\n• En prenant rendez-vous directement dans nos bureaux à Rabat ou via Calendly : https://calendly.com/epbsconsulting-sdg-esg-csr/30min.",
+      "Vous pouvez nous contacter via :\n• Notre formulaire de contact sur le site internet ;\n• Par téléphone (numéro à spécifier) ;\n• Par email à contact@epbsconsulting.com ;\n• En prenant rendez-vous directement dans nos bureaux à Rabat ou via Calendly : https://calendly.com/epbsconsulting-sdg-esg-csr/30min.",
   },
   {
     question: "Proposez-vous des formations RSE et ESG ?",

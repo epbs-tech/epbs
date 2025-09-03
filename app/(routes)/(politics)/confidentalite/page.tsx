@@ -127,8 +127,8 @@ export default function ConfidentialitePage() {
           <strong>Délégué à la protection des données (DPO)</strong><br />
           EPBS Consulting Maroc<br />
           15 avenue Al Abtal-Agdal, 10090 Rabat. Maroc<br />
-          <a href="mailto:contact@epbs-consulting.com" className="text-[var(--color-primary)]">
-            contact@epbs-consulting.com
+          <a href="mailto:contact@epbsconsulting.com" className="text-[var(--color-primary)]">
+            contact@epbsconsulting.com
           </a>
         </address>
 

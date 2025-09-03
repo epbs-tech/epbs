@@ -285,49 +285,17 @@ export default function Hero() {
           </div>
 
           {/* Partie visuelle - Vidéo toujours visible */}
-          <div className="w-full lg:w-1/2 mt-10 sm:mt-12 lg:mt-0 lg:ml-8 lg:mr-0"> {/* Ajout d'espace en haut sur mobile/tablette */}
-      <motion.div
-        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        className="relative overflow-hidden rounded-xl shadow-2xl mx-auto max-w-lg sm:max-w-xl md:max-w-2xl"
-      >
-        <video
-          ref={videoRef}
-          className="w-full aspect-video object-cover"
-          poster="/images/EPBS.png"
-          controls
-          muted
-        >
-          <source src="/images/videos/hero-video.mp4" type="video/mp4" />
-          Votre navigateur ne supporte pas la vidéo.
-        </video>
-
-        {!isPlaying && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <button
-              onClick={handlePlay}
-              className="flex h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-[var(--color-accent)] shadow-lg transition-all duration-300 hover:scale-110"
-            >
-              <Play className="h-3 w-3 sm:h-4 sm:w-4 md:h-6 md:w-6 text-[var(--color-dark)]" />
-            </button>
-          </div>
-        )}
-
-        {/* <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4 md:p-6">
-          <p className="font-alt text-xs sm:text-sm md:text-base text-white">
-            "La durabilité n'est pas un coût, c'est une stratégie"
-          </p>
-        </div> */}
-      </motion.div>
+          {/* Ajout d'espace en haut sur mobile/tablette */}
+          <div className="w-full lg:w-1/2 mt-10 sm:mt-12 lg:mt-0 lg:ml-8 lg:mr-0">
 
       {/* Logos clients */}
-      <div className="mt-6 sm:mt-8 md:mt-10 flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-8 opacity-90">
+      {/* <div className="mt-6 sm:mt-8 md:mt-10 flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-8 opacity-90">
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className="h-6 sm:h-8 md:h-10 grayscale transition-all hover:grayscale-0">
             <div className="h-full w-12 sm:w-16 md:w-24 rounded bg-white/20"></div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
         </div>
 
