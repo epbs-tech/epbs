@@ -28,9 +28,6 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "EPBS Consulting",
   description: "We help companies evolve through smart prospecting, business strategy, and customer-centric solutions.",
-  icons: {
-    icon: '/assests/EPBS_icon.png',
-  },
 };
 
 export default async function RootLayout({

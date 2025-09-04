@@ -27,7 +27,7 @@ const Header = () => {
       ]
     },
     {
-      label: 'EPBS ACADEMY',
+      label: 'Atouts',
       submenu: [
         { href: '/catalogue', label: 'Catalogue des formations' },
         { href: '/formations', label: 'Nos formations en cours' }
@@ -91,14 +91,14 @@ const Header = () => {
       <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled && !isOpen ? '-translate-y-full' : 'translate-y-0'}`}>
         <div className="bg-white backdrop-blur-md shadow-sm border-b border-gray-100">
           <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between py-5">
+            <div className="flex items-center justify-between py-4">
               <Link href="/" className="relative z-20">
                 <Image
                   src="/epbs_logo.svg"
                   alt="EPBS Logo"
                   height={150}
                   width={150}
-                  className="h-12 w-auto hover:opacity-90 transition-opacity"
+                  className="h-14 w-auto hover:opacity-90 transition-opacity"
                   priority
                 />
               </Link>

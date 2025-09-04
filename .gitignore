@@ -47,3 +47,6 @@ next-env.d.ts
 public/uploads/audio/*
 # Ne pas ignorer le fichier .gitkeep
 !public/uploads/audio/.gitkeep
+
+# local files
+.local/
