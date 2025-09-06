@@ -9,6 +9,8 @@ import {SessionProvider} from "next-auth/react";
 import {auth} from "@/auth";
 import { Toaster } from "sonner";
 import Header2 from "@/sections/Header2";
+import { AnalyticsProvider } from "./providers/analytics-provider";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -49,6 +51,28 @@ export default async function RootLayout({
         <ConditionalProgressButton/>
         <Footer/>
         </SessionProvider>
+        
+        {/* Analytics */}
+        <AnalyticsProvider />
+
+        {/* GA4 */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID!}`}
+          strategy="afterInteractive"
+        />
+
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag; // <-- important: attach to window
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID!}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+        
       </body>
     </html>
   );
