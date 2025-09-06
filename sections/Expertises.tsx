@@ -50,7 +50,7 @@ export default function ExpertisesSection() {
       color: "bg-[var(--color-primary-dark)]"
     },
     {
-      title: "Technologie",
+      title: "Technology",
       icon: <Code className="w-5 h-5" />,
       items: [
         "Sensibilisation & compétences durables",

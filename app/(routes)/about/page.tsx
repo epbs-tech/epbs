@@ -71,12 +71,12 @@ export default function About() {
                   transition={{ delay: 0.1 }}
                   viewport={{ once: true }}
                 >
-                  "EPBS avec ses entités EPBS Consulting et EPBS Technologie, incarne une conviction forte : conjuguer impact, innovation, performance et sobriété pour bâtir un avenir durable."
+                  "EPBS avec ses entités EPBS Consulting et EPBS Technology, incarne une conviction forte : conjuguer impact, innovation, performance et sobriété pour bâtir un avenir durable."
                 </motion.p>
 
                 {[
                   "Nous ne sommes pas seulement des conseillers, nous sommes des bâtisseurs. Avec EPBS Consulting, nous plaçons l'humain, la RSE et la finance durable au cœur des stratégies d'entreprise et des politiques publiques. Nous accompagnons les acteurs économiques et institutionnels à transformer leurs défis environnementaux, sociaux et financiers en véritables leviers de croissance — et, lorsque cela est nécessaire, en leviers de décroissance choisie, pour alléger les modèles et les rendre plus résilients.",
-                  "Avec EPBS Technologie, nous ouvrons la voie d'une transformation numérique responsable. Nos solutions SaaS sur mesure, nos plateformes d'IA et nos innovations digitales sont pensées pour renforcer l'efficacité, la transparence et l'impact des organisations. Cette innovation n'est pas au service d'une croissance sans limite, mais d'une utilisation plus sobre et intelligente des ressources, pour redonner du sens et réduire l'empreinte des activités.",
+                  "Avec EPBS Technology, nous ouvrons la voie d'une transformation numérique responsable. Nos solutions SaaS sur mesure, nos plateformes d'IA et nos innovations digitales sont pensées pour renforcer l'efficacité, la transparence et l'impact des organisations. Cette innovation n'est pas au service d'une croissance sans limite, mais d'une utilisation plus sobre et intelligente des ressources, pour redonner du sens et réduire l'empreinte des activités.",
                   "Notre force réside dans la complémentarité de nos expertises : conseil stratégique, ingénierie sociale et environnementale, digitalisation et innovation technologique. C'est cette transversalité qui fait de nous le partenaire privilégié des entreprises et institutions qui veulent conjuguer impact, performance et responsabilité — en osant ralentir, simplifier ou décroître pour mieux durer.",
                   "Chez EPBS, nous allons là où les autres s'arrêtent. Ensemble, nous coconstruisons des stratégies audacieuses, ancrées dans la réalité des territoires, capables de transformer durablement les écosystèmes. Notre ambition est claire : être le catalyseur d'un futur où chaque projet conjugue responsabilité, performance et transformation positive — non pas au prix de la planète et des générations futures, mais en cohérence avec elles.",
                 ].map((text, index) => (
@@ -601,19 +601,7 @@ export default function About() {
               viewport={{ margin: "-10% 0px -10% 0px" }}
             >
               <div className="flex flex-col lg:flex-row gap-10 items-center">
-                <motion.div
-                  className="w-full lg:w-1/2 order-2 lg:order-1 rounded-xl overflow-hidden shadow-lg"
-                >
-                  <Image
-                    src="/images/expertises/technology.jpg"
-                    alt="Transformation Digitale Responsable"
-                    width={600}
-                    height={400}
-                    className="w-full h-[400px] object-cover"
-                  />
-                </motion.div>
-
-                <div className="w-full lg:w-1/2 order-1 lg:order-2">
+                <div className="w-full lg:w-1/2">
                   <motion.h3
                     className="font-mont text-2xl font-bold text-[var(--color-primary-dark)] mb-4"
                     initial={{ opacity: 0 }}
@@ -702,6 +690,16 @@ export default function About() {
                     ))}
                   </motion.ul>
                 </div>
+
+                <motion.div className="w-full lg:w-1/2 rounded-xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/images/expertises/technology.jpg"
+                    alt="Transformation Digitale Responsable"
+                    width={600}
+                    height={400}
+                    className="w-full h-[400px] object-cover"
+                  />
+                </motion.div>
               </div>
             </motion.div>
           </div>

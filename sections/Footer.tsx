@@ -131,8 +131,8 @@ export default function NextGenFooter() {
                 <li><a href="/about#expertises-details" className="hover:text-[var(--color-accent)] transition-colors flex items-center group"><span className="w-2 h-2 bg-[var(--color-accent)] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>Stratégie RSE</a></li>
                 <li><a href="/about#finance-verte" className="hover:text-[var(--color-accent)] transition-colors flex items-center group"><span className="w-2 h-2 bg-[var(--color-accent)] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>Finance durable</a></li>
                 <li><a href="/about#economie-circulaire" className="hover:text-[var(--color-accent)] transition-colors flex items-center group"><span className="w-2 h-2 bg-[var(--color-accent)] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>Économie circulaire</a></li>
-                <li><a href="/about#transformation" className="hover:text-[var(--color-accent)] transition-colors flex items-center group"><span className="w-2 h-2 bg-[var(--color-accent)] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Transformation</a></li>
+                <li><a href="/about#transformation" className="hover:text-[var(--color-accent)] transition-colors flex items-center group"><span className="w-2 h-2 bg-[var(--color-accent)] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>Transformation</a></li>
+                <li><a href="/about#technology" className="hover:text-[var(--color-accent)] transition-colors flex items-center group"><span className="w-2 h-2 bg-[var(--color-accent)] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>Technology</a></li>
               </ul>
             </div>
             <div className="col-span-1 mb-8">

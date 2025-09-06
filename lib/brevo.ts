@@ -1,9 +1,10 @@
 import nodemailer from 'nodemailer';
-const domain = process.env.NEXT_PUBLIC_APP_URL;
-const SMTP_HOST = process.env.SMTP_HOST;
+const domain = process.env.NEXT_PUBLIC_APP_URL!;
+const SMTP_HOST = process.env.SMTP_HOST!;
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
-const SMTP_USER = process.env.SMTP_USER;
-const SMTP_PASS = process.env.SMTP_PASS;
+const SMTP_USER = process.env.SMTP_USER!;
+const SMTP_PASS = process.env.SMTP_PASS!;
+const SMTP_FROM = process.env.SMTP_FROM!;
 
 const transporter = nodemailer.createTransport({
   host: SMTP_HOST,
@@ -92,7 +93,7 @@ const sendEmail = async ({
   htmlContent: string;
 }) => {
   await transporter.sendMail({
-    from: `EPBS Consulting <${SMTP_USER}>`,
+    from: `EPBS Consulting <${SMTP_FROM}>`,
     to,
     subject,
     html: createEmailTemplate(htmlContent),
